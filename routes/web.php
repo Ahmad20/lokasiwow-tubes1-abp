@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SinglePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index', [
+        "name" => "AhmadJ"
+    ]);
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/page', [SinglePageController::class, 'index']);
+Route::post('/page', [SinglePageController::class, 'post']);
+Route::post('login/auth', [LoginController::class, 'auth'])->name('login.auth');
+Route::get('/categories', [CategoryController::class, 'index']);
+
+
