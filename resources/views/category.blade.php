@@ -2,10 +2,10 @@
 @section('container')
     <section class="container">
         <div class="d-flex align-items-center my-3" style="width: 300px;">
-            {{-- <p class="mb-0 text-nowrap px-3">
+            <p class="mb-0 text-nowrap px-3">
                 Pilih daerah
-            </p> --}}
-            <form action="{{ url('/page') }}" method="post">
+            </p>
+            {{-- <form action="{{ url('/page') }}" method="get">
                 <label for="browser">Pilih Daerah: </label>
                 <input list="browsers" name="browser" id="browser">
                 <datalist id="browsers">
@@ -16,13 +16,13 @@
                     <option value="Jabar">
                 </datalist>
                 <input type="submit">
-            </form>
-            {{-- <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            </form> --}}
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option selected>Open this select menu</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-            </select> --}}
+            </select>
         </div>
 
         <div class="container-fluid">

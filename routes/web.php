@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SinglePageController;
@@ -18,16 +20,21 @@ use App\Http\Controllers\SinglePageController;
 */
 
 Route::get('/', function () {
-    return view('index', [
-        "name" => "AhmadJ"
-    ]);
+    return view('index');
 });
 
 Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'auth']);
 Route::get('/register', [RegisterController::class, 'index']);
-Route::get('/page', [SinglePageController::class, 'index']);
-Route::post('/page', [SinglePageController::class, 'post']);
-Route::post('login/auth', [LoginController::class, 'auth'])->name('login.auth');
-Route::get('/categories', [CategoryController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/profile', [ProfileController::class, 'index']);
+Route::post('/profile/edit', [ProfileController::class, 'update']);
+Route::post('/profile/delete', [ProfileController::class, 'delete']);
+// Route::get('/profile', [ProfileController::class, 'index']);
+// Route::get('/user', [UserController::class,'registrasi']);
+// Route::get('/page', [SinglePageController::class, 'index']);
+// Route::post('/page', [SinglePageController::class, 'post']);
+// Route::post('login/auth', [LoginController::class, 'auth'])->name('login.auth');
+// Route::get('/categories', [CategoryController::class, 'index']);
 
 

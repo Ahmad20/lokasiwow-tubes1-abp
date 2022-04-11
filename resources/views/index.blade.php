@@ -70,5 +70,5 @@
 @endsection
 
 @section('greeting')
-    <p class="mb-0 me-2">Hello, {{ $name }}</p>
+    <a href="/profile" style='text-decoration:none; color:white'><p class="mb-0 me-2">Hello, {{ session('username') }}</p></a>
 @endsection
