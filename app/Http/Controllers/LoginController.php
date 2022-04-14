@@ -18,9 +18,10 @@ class LoginController extends Controller
         if(Auth::attempt($credential)){
             //prevent session fixation
             $request->session()->regenerate();
+            $request->session()->put("username", $credential['username']);
             return redirect()->intended("/");
         }
-        $request->session()->put("username", $credential['username']);
+        // $request->session()->put("username", $credential['username']);
         return back()->with("failed", "Login Gagal");
     }
 }

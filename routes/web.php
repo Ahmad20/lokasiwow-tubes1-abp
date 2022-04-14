@@ -20,7 +20,8 @@ use App\Http\Controllers\SinglePageController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $post = DB::table('posts')->get();
+    return view('index', ['posts' => $post]);
 });
 
 Route::get('/login', [LoginController::class, 'index']);

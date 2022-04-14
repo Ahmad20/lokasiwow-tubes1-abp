@@ -17,10 +17,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->words(3, true),
-            'location' => $this->faker->country(),
-            'url_link' => $this->faker->url(),
-            'count_like' => $this->faker->randomNumber(5, true),
+            //
         ];
     }
 
