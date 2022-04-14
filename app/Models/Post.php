@@ -10,11 +10,14 @@ use Laravel\Sanctum\HasApiTokens;
 class Post extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $table = 'posts';
+    protected $primary_key='post_id';
     protected $fillable = [
         'title',
         'location',
-        'url_link',
-        'count_like'
+        'image_link',
+        // 'count_like'
+        'rating_score',
+        'rating_total'
     ];
 }
