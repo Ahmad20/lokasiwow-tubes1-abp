@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Comment;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-
+use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
@@ -15,9 +16,24 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $post = Post::all();
+        return view('index', ['posts' => $post]);
     }
 
+    public function singlepage(Request $request, $post_id){
+        $post = Post::find($post_id);
+        return view('singlepage',['post' => $post]);
+    }
+
+    public function save_comment(Request $request){
+        $data=new Comment;
+        $data->post_id=$request->post;
+        $data->comment_text=$request->comment;
+        $data->save();
+        return response()->json([
+            'bool'=>true
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *

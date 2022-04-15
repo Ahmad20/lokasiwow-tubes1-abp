@@ -96,7 +96,7 @@
                 </div> --}}
                 @foreach ($posts as $post)
                     <div class="col-sm-12 col-md-6 col-lg-3">
-                        <a href='/posts/{{ $post->title }}' style="text-decoration:none;color:black">
+                        <a href='/posts/{{ $post->post_id }}' style="text-decoration:none;color:black">
                             <div class="card mb-3">
                                 <img src="{{ $post->image_link }}" class="card-img-top" alt="{{ $post->title }}"
                                     style="width:100%;height:200px">
