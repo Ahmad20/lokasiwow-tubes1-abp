@@ -27,6 +27,12 @@
     }
 
 </style>
+
+@php
+    $liked = false
+@endphp
+
+
 @section('container')
     <section class="container">
         <div class="d-flex align-items-center my-3" style="width: 300px;">
@@ -94,8 +100,10 @@
                         </div>
                     </div>
                 </div> --}}
+                
+
                 @foreach ($posts as $post)
-                    <div class="col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-sm-12 col-md-6 col-lg-3" style="position:relative">
                         <div class="card mb-3">
                             <img src="{{ $post->image_link }}" class="card-img-top" alt="{{ $post->title }}"
                                 style="width:100%;height:200px">
