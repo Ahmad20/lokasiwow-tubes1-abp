@@ -23,11 +23,14 @@ Route::get('/', function () {
     $post = DB::table('posts')->get();
     return view('index', ['posts' => $post]);
 });
-
+Route::get('/posts/{name}', function($name){
+    return view('singlepage',['post' => $name]);
+});
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'auth']);
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/profile/delete', [ProfileController::class, 'delete']);

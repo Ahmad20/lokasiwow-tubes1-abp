@@ -24,4 +24,10 @@ class LoginController extends Controller
         // $request->session()->put("username", $credential['username']);
         return back()->with("failed", "Login Gagal");
     }
+
+    function logout(Request $request){
+        Auth::logout();
+        $request->session()->flush();
+        return redirect('/');
+    }
 }

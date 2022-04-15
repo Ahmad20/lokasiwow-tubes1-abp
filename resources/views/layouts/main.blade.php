@@ -33,10 +33,11 @@
                 <div class="d-flex align-items-center text-light">
                     {{-- <p class="mb-0 me-2">Hello, Guest</p> --}}
                     @yield('greeting')
-                    <button type="button" class="btn me-1" style="background-color: #FF9E53;"
+                    @yield('button')
+                    {{-- <button type="button" class="btn me-1" style="background-color: #FF9E53;"
                         onclick="location.href='{{ url('login') }}'">Login</button>
                     <button type="button" class="btn btn-warning me-1"
-                        onclick="location.href='{{ url('register') }}'">Register</button>
+                        onclick="location.href='{{ url('register') }}'">Register</button> --}}
                 </div>
             </div>
         </div>
