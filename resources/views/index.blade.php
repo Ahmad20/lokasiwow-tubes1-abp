@@ -27,6 +27,12 @@
     }
 
 </style>
+
+@php
+    $liked = false
+@endphp
+
+
 @section('container')
     <section class="container">
         <div class="d-flex align-items-center my-3" style="width: 300px;">
@@ -94,6 +100,8 @@
                         </div>
                     </div>
                 </div> --}}
+                
+
                 @foreach ($posts as $post)
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <a href='/posts/{{ $post->title }}' style="text-decoration:none;color:black">
