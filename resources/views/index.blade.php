@@ -103,20 +103,23 @@
                 
 
                 @foreach ($posts as $post)
-                    <div class="col-sm-12 col-md-6 col-lg-3" style="position:relative">
-                        <div class="card mb-3">
-                            <img src="{{ $post->image_link }}" class="card-img-top" alt="{{ $post->title }}"
-                                style="width:100%;height:200px">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $post->title }}</h5>
-                                <p class="card-text">{{ $post->location }}</p>
-                                <span id="rating_value" class="rating_value">{{ $post->rating_score }}</span>
-                                <div class="stars-outer">
-                                    <div class="stars-inner"></div>
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <a href='/posts/{{ $post->title }}' style="text-decoration:none;color:black">
+                            <div class="card mb-3">
+                                <img src="{{ $post->image_link }}" class="card-img-top" alt="{{ $post->title }}"
+                                    style="width:100%;height:200px">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <p class="card-text">{{ $post->location }}</p>
+                                    <span id="rating_value" class="rating_value">{{ $post->rating_score }}</span>
+                                    <div class="stars-outer">
+                                        <div class="stars-inner"></div>
+                                    </div>
+
+                                    <span>({{ number_format($post->rating_count) }})</span>
                                 </div>
-                                <span>({{ number_format($post->rating_count) }})</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
 
@@ -131,13 +134,14 @@
         const startotal = 5;
         document.addEventListener('DOMContentLoaded',
             getRatings);
-        function getRatings(){
+
+        function getRatings() {
             for (var i = 0; i < elem.length; i++) {
                 rating = elem[i].innerText;
-                    
+
                 const starPercentage = (rating /
                     startotal) * 100;
-                
+
                 const starPercentageRounded = `${Math.round(starPercentage / 10) *10}%`;
                 console.log(starPercentageRounded);
                 elem1[i].style.width = starPercentage + '%';
@@ -145,7 +149,6 @@
         }
     </script>
 @endsection
-
 @section('greeting')
     <a href="/profile" style='text-decoration:none; color:white'>
         <p class="mb-0 me-2">
@@ -154,4 +157,15 @@
             @endif
         </p>
     </a>
+@endsection
+@section('button')
+    @if (session()->has('username'))
+        <button type="button" class="btn me-1" style="background-color: #FF9E53;"
+            onclick="location.href='{{ url('logout') }}'">Logout</button>
+    @else
+        <button type="button" class="btn me-1" style="background-color: #FF9E53;"
+            onclick="location.href='{{ url('login') }}'">Login</button>
+        <button type="button" class="btn btn-warning me-1"
+            onclick="location.href='{{ url('register') }}'">Register</button>
+    @endif
 @endsection

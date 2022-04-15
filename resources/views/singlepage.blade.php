@@ -15,7 +15,7 @@
         <div class="row gx-2">
             <div style="background-color: white;" class="rounded col-sm-12 col-md-8">
                 <article class="m-3">
-                    <h1 class="fw-bold fs-2 mb-0">Nama tempat</h1>
+                    <h1 class="fw-bold fs-2 mb-0">{{ $post }}</h1>
                     <p style="color: gray;">Provinsi</p>
                     <div style="">
                         <img src="https://placeholder.pics/svg/600x500" width="100%" alt="" />
@@ -95,9 +95,11 @@
     </section>
 @endsection
 
-@section('greeting')
+{{-- @section('greeting')
     <p class="mb-0 me-2">Hello, {{ $name }}</p>
-@endsection
+
+@endsection --}}
+
 
 @section('script')
 
