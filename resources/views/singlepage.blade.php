@@ -199,8 +199,8 @@
                 },
                 success: function(res) {
                     var _html = '<blockquote class="blockquote animate__animated animate__bounce">\
-                                <small class="mb-0">' + _comment + '</small>\
-                                </blockquote><hr/>';
+                                    <small class="mb-0">' + _comment + '</small>\
+                                    </blockquote><hr/>';
                     if (res.bool == true) {
                         $(".comments").prepend(_html);
                         $(".comment").val('');
