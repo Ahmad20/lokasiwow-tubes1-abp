@@ -4,6 +4,7 @@
 <div class="container">
 
   <h1>Admin tempat panel</h1>
+  <button class="btn btn-success">Tambah item</button>
   <table class="table">
     <thead>
       <tr>
@@ -22,4 +23,4 @@
   </table>
 </div>
 
-@section('container')
+@endsection

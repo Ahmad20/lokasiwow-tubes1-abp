@@ -34,6 +34,11 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/profile/delete', [ProfileController::class, 'delete']);
+
+Route::get('/admintest', function(){
+    return view('adminBlog');
+})
+
 // Route::get('/profile', [ProfileController::class, 'index']);
 // Route::get('/user', [UserController::class,'registrasi']);
 // Route::get('/page', [SinglePageController::class, 'index']);
@@ -42,3 +47,4 @@ Route::post('/profile/delete', [ProfileController::class, 'delete']);
 // Route::get('/categories', [CategoryController::class, 'index']);
 
 
+?>
