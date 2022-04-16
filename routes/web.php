@@ -35,8 +35,8 @@ Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/profile/delete', [ProfileController::class, 'delete']);
 
-Route::get('/admintest', function(){
-    return view('adminBlog');
+Route::get('/test', function(){
+    return view('category');
 })
 
 // Route::get('/profile', [ProfileController::class, 'index']);
