@@ -20,18 +20,18 @@ use App\Http\Controllers\SinglePageController;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('/', [PostController::class, 'index'])->middleware('web');
 // Route::get('/posts/{name}', function($name){
 //     return view('singlepage',['post' => $name]);
 // });
 Route::post('save-comment',[PostController::class, 'save_comment']);
-Route::get('/posts/{post_id}', [PostController::class, 'singlepage']);
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/posts/{post_id}', [PostController::class, 'singlepage'])->middleware('auth');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'auth']);
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/profile/delete', [ProfileController::class, 'delete']);
 // Route::get('/profile', [ProfileController::class, 'index']);

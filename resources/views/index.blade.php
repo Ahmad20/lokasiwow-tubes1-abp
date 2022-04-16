@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-<style>
+<style type="text/css">
     .stars-outer {
         display: inline-block;
         position: relative;
@@ -26,6 +26,25 @@
         color: #f8ce0b;
     }
 
+    .card:hover {
+        transform: scale(1.025);
+        z-index: 3;
+        box-shadow: 1px 8px 20px grey;
+        -webkit-transition: box-shadow .1s ease-in;
+    }
+
+    .btn:hover {
+        transform: scale(1.025);
+        z-index: 3;
+        -webkit-transition: box-shadow .1s ease-in;
+    }
+
+    .pagination li {
+        float: left;
+        list-style-type: none;
+        margin: 5px;
+    }
+
 </style>
 @section('container')
     <section class="container">
@@ -42,7 +61,7 @@
             </select>
         </div> --}}
 
-        <div class="container-fluid">
+        <div class="container-fluid mt-5">
             <div class="row gx-2">
                 @foreach ($posts as $post)
                     <div class="col-sm-12 col-md-6 col-lg-3">
@@ -51,7 +70,8 @@
                                 <img src="{{ $post->image_link }}" class="card-img-top" alt="{{ $post->title }}"
                                     style="width:100%;height:200px">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                    <h5 class="card-title" style="height: 3em;text-overflow: ellipsis;">
+                                        {{ $post->title }}</h5>
                                     <p class="card-text">{{ $post->location }}</p>
                                     <span id="rating_value" class="rating_value">{{ $post->rating_score }}</span>
                                     <div class="stars-outer">
@@ -67,6 +87,16 @@
 
             </div>
         </div>
+        <div class='d-flex justify-content-center'>
+            Halaman : {{ $posts->currentPage() }} |
+            Jumlah Data : {{ $posts->total() }} |
+            Data Per Halaman : {{ $posts->perPage() }} <br />
+
+        </div>
+        <div class='d-flex justify-content-center'>
+            {{ $posts->links('pagination::bootstrap-4') }}
+        </div>
+
     </section>
 @endsection
 @section('script')
@@ -94,14 +124,25 @@
 @section('greeting')
     <a href="/profile" style='text-decoration:none; color:white'>
         <p class="mb-0 me-2">
-            @if (session()->has('username'))
+            @auth
+                Hello, {{ auth()->user()->username }}
+            @endauth
+            {{-- @if (session()->has('username'))
                 Hello, {{ session('username') }}
-            @endif
+            @endif --}}
         </p>
     </a>
 @endsection
 @section('button')
-    @if (session()->has('username'))
+    @auth
+        <button type="button" class="btn me-1" style="background-color: #FF9E53;"
+            onclick="location.href='{{ url('logout') }}'">Logout</button>
+    @else
+        <button type="button" class="btn me-1" style="background-color: #FF9E53;"
+            onclick="location.href='{{ url('login') }}'">Login</button>
+        <button type="button" class="btn btn-warning me-1" onclick="location.href='{{ url('register') }}'">Register</button>
+    @endauth
+    {{-- @if (session()->has('username'))
         <button type="button" class="btn me-1" style="background-color: #FF9E53;"
             onclick="location.href='{{ url('logout') }}'">Logout</button>
     @else
@@ -109,5 +150,5 @@
             onclick="location.href='{{ url('login') }}'">Login</button>
         <button type="button" class="btn btn-warning me-1"
             onclick="location.href='{{ url('register') }}'">Register</button>
-    @endif
+    @endif --}}
 @endsection

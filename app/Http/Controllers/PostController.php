@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
@@ -16,13 +17,18 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
+        $post = Post::paginate(20);
         return view('index', ['posts' => $post]);
     }
 
     public function singlepage(Request $request, $post_id){
         $post = Post::find($post_id);
-        return view('singlepage',['post' => $post]);
+        $comments = DB::table('comments')
+                            ->where('post_id', '=', $post_id)
+                            ->orderByDesc('created_at')
+                            ->get();
+        return view('singlepage')->with('post', $post)->with('comments', $comments);
+        // return view('singlepage',['post' => $post]);
     }
 
     public function save_comment(Request $request){

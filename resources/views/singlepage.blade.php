@@ -117,13 +117,13 @@
 
                 {{-- Post Comments --}}
                 <div class="card mt-4">
-                    @php
+                    {{-- @php
                         $post_id = $post->post_id;
                         $comments = DB::table('comments')
                             ->where('post_id', '=', $post_id)
                             ->orderByDesc('created_at')
                             ->get();
-                    @endphp
+                    @endphp --}}
                     <h5 class="card-header">Comments <span class="comment-count float-right badge badge-info" style="color:black">{{ count($comments) }}</span>
                     </h5>
                     <div class="card-body">

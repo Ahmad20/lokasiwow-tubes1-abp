@@ -27,7 +27,9 @@ class LoginController extends Controller
 
     function logout(Request $request){
         Auth::logout();
-        $request->session()->flush();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        // $request->session()->flush();
         return redirect('/');
     }
 }
