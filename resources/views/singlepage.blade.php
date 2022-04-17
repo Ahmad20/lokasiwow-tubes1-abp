@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 <style>
     /* Style the list */
     ul.breadcrumb {
@@ -33,6 +34,7 @@
     }
 
 </style>
+
 @section('container')
     <!-- KATEGORI TEMPAT -->
     <div class="container">
@@ -45,16 +47,17 @@
         </div>
     </div>
 
-
     <!-- TULISAN TEMPAT -->
     <section class="container">
         <div class="row gx-2">
             <div style="background-color: white;" class="rounded col-sm-12 col-md-8">
                 <article class="m-3">
+
                     <h1 class="fw-bold fs-2 mb-0">{{ $post->title }}</h1>
                     <p style="color: gray;">{{ $post->location }}</p>
                     <div>
                         <img src="{{ $post->image_link }}" width="100%" alt="" />
+
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam eum corporis, illum cupiditate non,
                         tempore accusantium enim deleniti dignissimos ratione quaerat. Nostrum reprehenderit error
@@ -74,6 +77,7 @@
 
             <!-- BAGIAN KOMEN SAMA LIKE -->
             <div style="background-color: white;" class="rounded col-sm-12 col-md-4">
+
 
                 {{-- Post Comments --}}
                 <div class="card mt-5">
@@ -130,6 +134,7 @@
                             @endif
                         </div>
                     </div>
+
                 </div>
                 {{-- ## End Post Comments --}}
 
@@ -137,6 +142,7 @@
         </div>
     </section>
 @endsection
+
 
 @section('greeting')
     <a href="/profile" style='text-decoration:none; color:white'>
@@ -188,5 +194,6 @@
                 }
             });
         });
+
     </script>
 @endsection
