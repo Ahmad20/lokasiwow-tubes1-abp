@@ -33,11 +33,17 @@
         -webkit-transition: box-shadow .1s ease-in;
     }
 
+
     .btn:hover {
         transform: scale(1.025);
         z-index: 3;
         -webkit-transition: box-shadow .1s ease-in;
     }
+
+@php
+$liked = false;
+@endphp
+
 
     .pagination li {
         float: left;
@@ -108,18 +114,12 @@
         var elem = document.getElementsByClassName('rating_value');
         var elem1 = document.getElementsByClassName('stars-inner');
         const startotal = 5;
-        document.addEventListener('DOMContentLoaded',
-            getRatings);
+        document.addEventListener('DOMContentLoaded', getRatings);
 
         function getRatings() {
             for (var i = 0; i < elem.length; i++) {
                 rating = elem[i].innerText;
-
-                const starPercentage = (rating /
-                    startotal) * 100;
-
-                const starPercentageRounded = `${Math.round(starPercentage / 10) *10}%`;
-                console.log(starPercentageRounded);
+                const starPercentage = (rating / startotal) * 100;
                 elem1[i].style.width = starPercentage + '%';
             }
         }

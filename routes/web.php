@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SinglePageController;
@@ -40,6 +41,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/profile/delete', [ProfileController::class, 'delete']);
+
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::resources([
@@ -58,7 +60,10 @@ Route::group(['middleware' => ['admin']], function () {
 
 });
 
+Route::get('/dashboard', [DashboardController::class,'index']);
+
 // Route::get('home', [HomeController::class, 'index'])->name('home');
+
 // Route::get('/profile', [ProfileController::class, 'index']);
 // Route::get('/user', [UserController::class,'registrasi']);
 // Route::get('/page', [SinglePageController::class, 'index']);
@@ -67,3 +72,4 @@ Route::group(['middleware' => ['admin']], function () {
 // Route::get('/categories', [CategoryController::class, 'index']);
 
 
+?>
