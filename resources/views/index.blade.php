@@ -88,9 +88,13 @@
             </div>
         </div>
         <div class='d-flex justify-content-center'>
-            Halaman : {{ $posts->currentPage() }} |
-            Jumlah Data : {{ $posts->total() }} |
-            Data Per Halaman : {{ $posts->perPage() }} <br />
+            Halaman : {{ $posts->currentPage() }} / {{ $posts->lastPage() }} |
+
+            @if ($posts->perPage() > $posts->total())
+                Data : {{ $posts->total() }} / {{ $posts->total() }}
+            @else
+                Data : {{ $posts->perPage() }} / {{ $posts->total() }}
+            @endif <br />
 
         </div>
         <div class='d-flex justify-content-center'>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
+
     function index(){
         return view('login');
     }
@@ -19,7 +20,9 @@ class LoginController extends Controller
             //prevent session fixation
             $request->session()->regenerate();
             $request->session()->put("username", $credential['username']);
-            return redirect()->intended("/");
+            return redirect()->intended('/');
+            
+            // return redirect()->intended("/");
         }
         // $request->session()->put("username", $credential['username']);
         return back()->with("failed", "Login Gagal");

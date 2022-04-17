@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
@@ -15,7 +15,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        // $comments = DB::table('comments')->orderByDesc('created_at')->get();
+        $comments = Comment::orderByDesc('created_at')->paginate(10);
+        return view('admin.comments.index', ['comments' => $comments]);
     }
 
     /**

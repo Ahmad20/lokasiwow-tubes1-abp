@@ -39,7 +39,7 @@
         <div class="d-flex align-items-center my-3" style="width: 100%;">
             <ul class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="/posts/{{ $post->location }}">{{ $post->location }}</a></li>
+                <li><a href="/posting/{{ $post->location }}">{{ $post->location }}</a></li>
                 <li>{{ $post->title }}</li>
             </ul>
         </div>
@@ -54,7 +54,7 @@
                     <h1 class="fw-bold fs-2 mb-0">{{ $post->title }}</h1>
                     <p style="color: gray;">{{ $post->location }}</p>
                     <div>
-                        <img src="https://placeholder.pics/svg/600x500" width="100%" alt="" />
+                        <img src="{{ $post->image_link }}" width="100%" alt="" />
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam eum corporis, illum cupiditate non,
                         tempore accusantium enim deleniti dignissimos ratione quaerat. Nostrum reprehenderit error
@@ -108,15 +108,8 @@
             <!-- BAGIAN KOMEN SAMA LIKE -->
             <div style="background-color: white;" class="rounded col-sm-12 col-md-4">
 
-                <!-- BAGIAN LIKE -->
-                <p class="mb-0 fw-bold fs-3 mt-2">Liked by</p>
-                <div>
-                    <p class="mb-0">nama, nama, nama, nama</p>
-                </div>
-                <hr class="my-1">
-
                 {{-- Post Comments --}}
-                <div class="card mt-4">
+                <div class="card mt-5">
                     {{-- @php
                         $post_id = $post->post_id;
                         $comments = DB::table('comments')
@@ -132,7 +125,7 @@
                             @csrf
                             <textarea class="form-control comment" placeholder="Enter Comment"></textarea>
                             <button data-post="{{ $post->post_id }}"
-                                class="btn btn-dark btn-sm mt-2 save-comment">Submit</button>
+                                class="btn btn-dark btn-sm mt-2 save-comment">Save</button>
                         </div>
                         <hr />
                         {{-- List Start --}}
@@ -156,7 +149,12 @@
                             @if (count($comments) > 0)
                                 @foreach ($comments as $comment)
                                     <blockquote class="blockquote">
-                                        <small class="mb-0">{{ $comment->comment_text }}</small>
+                                        <small class="mb-0">
+                                            {{ DB::table('users')->select('username')
+                                            ->where('id', '=',  $comment->user_id)
+                                            ->value('username') . " : " .
+                                            $comment->comment_text }}
+                                        </small>
                                     </blockquote>
                                     <hr />
                                 @endforeach
@@ -173,15 +171,26 @@
     </section>
 @endsection
 
-{{-- @section('greeting')
-    <p class="mb-0 me-2">Hello, {{ $name }}</p>
-@endsection --}}
+@section('greeting')
+    <a href="/profile" style='text-decoration:none; color:white'>
+        <p class="mb-0 me-2">
+            @auth
+                Hello, {{ auth()->user()->username }}
+            @endauth
+            {{-- @if (session()->has('username'))
+                Hello, {{ session('username') }}
+            @endif --}}
+        </p>
+    </a>
+@endsection
 @section('script')
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript">
         // Save Comment
         $(".save-comment").on('click', function() {
             var _comment = $(".comment").val();
+            var _user = {{auth()->user()->id}};
+            var _name = '{{auth()->user()->username}}';
             var _post = $(this).data('post');
             var vm = $(this);
             // Run Ajax
@@ -190,6 +199,7 @@
                 type: "post",
                 dataType: 'json',
                 data: {
+                    user: _user,
                     comment: _comment,
                     post: _post,
                     _token: "{{ csrf_token() }}"
@@ -199,7 +209,7 @@
                 },
                 success: function(res) {
                     var _html = '<blockquote class="blockquote animate__animated animate__bounce">\
-                                    <small class="mb-0">' + _comment + '</small>\
+                                    <small class="mb-0">' +_name + ' : ' + _comment + '</small>\
                                     </blockquote><hr/>';
                     if (res.bool == true) {
                         $(".comments").prepend(_html);

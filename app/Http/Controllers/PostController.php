@@ -22,18 +22,28 @@ class PostController extends Controller
     }
 
     public function singlepage(Request $request, $post_id){
-        $post = Post::find($post_id);
+        $post = Post::findOrFail($post_id);
         $comments = DB::table('comments')
                             ->where('post_id', '=', $post_id)
                             ->orderByDesc('created_at')
                             ->get();
         return view('singlepage')->with('post', $post)->with('comments', $comments);
-        // return view('singlepage',['post' => $post]);
+    }
+
+    public function singlelocation(Request $request, $location){
+        // $post = Post::findOrFail($location);
+        // $post = DB::table('posts')
+        //                     ->where('location', '=', $location)
+        //                     ->get();
+        $post = Post::where('location', '=', $location)->paginate(20);
+        // return dd($post);
+        return view('index', ['posts' => $post]);
     }
 
     public function save_comment(Request $request){
         $data=new Comment;
         $data->post_id=$request->post;
+        $data->user_id=$request->user;
         $data->comment_text=$request->comment;
         $data->save();
         return response()->json([

@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)->create();
+        $this->call([
+            BlogSeeder::class
+        ]);
         //\App\Models\Post::factory(10)->create();
         DB::unprepared(file_get_contents('app/post1.sql'));
     }
