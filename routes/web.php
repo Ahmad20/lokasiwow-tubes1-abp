@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SinglePageController;
+use App\Http\Controllers\AdminPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,6 @@ use App\Http\Controllers\SinglePageController;
 */
 
 Route::get('/', [PostController::class, 'index'])->middleware('web');
-// Route::get('/posts/{name}', function($name){
-//     return view('singlepage',['post' => $name]);
-// });
 Route::post('save-comment',[PostController::class, 'save_comment']);
 Route::get('/posts/{post_id}', [PostController::class, 'singlepage'])->middleware('auth');
 Route::get('/posting/{location}', [PostController::class, 'singlelocation'])->middleware('auth');
@@ -40,7 +38,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::post('/profile/edit', [ProfileController::class, 'update']);
 Route::post('/profile/delete', [ProfileController::class, 'delete']);
-
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::resources([
@@ -48,27 +45,11 @@ Route::group(['middleware' => ['admin']], function () {
         'comments' => CommentController::class,
         'location' => LocationController::class,
         'categories' => CategoryController::class,
-        '/admin/post' => AdminPostController::class,
-        '/admin/user' => UserController::class
+        'post' => AdminPostController::class,
+        'users' => UserController::class
     ]);
-    // Route::resource('/admin/comment', CommentController::class);
-    // Route::resource('/admin/location', LocationController::class);
-    // Route::resource('/admin/category', CategoryController::class);
-    // Route::resource('/admin/post', AdminPostController::class);
-    // Route::resource('/admin/user', UserController::class);
 
 });
-
 Route::get('/dashboard', [DashboardController::class,'index']);
-
-// Route::get('home', [HomeController::class, 'index'])->name('home');
-
-// Route::get('/profile', [ProfileController::class, 'index']);
-// Route::get('/user', [UserController::class,'registrasi']);
-// Route::get('/page', [SinglePageController::class, 'index']);
-// Route::post('/page', [SinglePageController::class, 'post']);
-// Route::post('login/auth', [LoginController::class, 'auth'])->name('login.auth');
-// Route::get('/categories', [CategoryController::class, 'index']);
-
 
 ?>

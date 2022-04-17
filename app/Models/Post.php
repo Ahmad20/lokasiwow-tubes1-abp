@@ -18,7 +18,7 @@ class Post extends Model
         'image_link',
         // 'count_like'
         'rating_score',
-        'rating_total'
+        'rating_count',
     ];
     function comments(){
         return $this->hasMany(Comment::class)->orderBy('id','desc');

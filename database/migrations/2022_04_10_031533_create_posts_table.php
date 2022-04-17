@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id('post_id');
             $table->string('title');
             $table->string('location');
-            $table->text('image_link');
+            $table->text('image_link')->nullable();
             $table->float('rating_score');
-            $table->integer('rating_count');
+            $table->integer('rating_count')->nullable()->default(0);
             // $table->integer('count_like');
             $table->timestamps();
         });
