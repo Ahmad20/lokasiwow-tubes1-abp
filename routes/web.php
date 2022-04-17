@@ -45,7 +45,7 @@ Route::group(['middleware' => ['admin']], function () {
         'blogs' => BlogController::class,
         'comments' => CommentController::class,
         'location' => LocationController::class,
-        '/admin/category' => CategoryController::class,
+        'categories' => CategoryController::class,
         '/admin/post' => AdminPostController::class,
         '/admin/user' => UserController::class
     ]);
