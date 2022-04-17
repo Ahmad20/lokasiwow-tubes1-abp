@@ -20,11 +20,11 @@
                 </tr>
                 <tr>
                     <td>Admin Panel Comment</td>
-                    <td><a href="/comment">Link</a></td>
+                    <td><a href="/comments">Link</a></td>
                 </tr>
                 <tr>
-                    <td>Admin Panel Cateogry</td>
-                    <td><a href="/category">Link</a></td>
+                    <td>Admin Panel Category</td>
+                    <td><a href="/categories">Link</a></td>
                 </tr>
                 <tr>
                     <td>Admin Panel Location</td>
@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td>Admin Panel User</td>
-                    <td><a href="/admin/user">Link</a></td>
+                    <td><a href="/users">Link</a></td>
                 </tr>
             </tbody>
         </table>

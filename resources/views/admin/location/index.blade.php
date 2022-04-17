@@ -15,7 +15,7 @@
         @if (session()->has('failed'))
             <p class="alert alert-danger">{{ session('failed') }}</p>
         @endif
-        <h1>Admin Blog</h1>
+        <h1>Admin Location</h1>
         <button class="btn btn-success" onclick="window.location.href='{{ route('location.create') }}';">Tambah
             item</button>
         <table class="table">

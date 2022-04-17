@@ -14,11 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Menambahkan dummy data untuk table user dan blog
         \App\Models\User::factory(10)->create();
         $this->call([
-            BlogSeeder::class
+            BlogSeeder::class,
         ]);
-        //\App\Models\Post::factory(10)->create();
+        // Membaca sql untuk data post wisata
         DB::unprepared(file_get_contents('app/post1.sql'));
     }
 }

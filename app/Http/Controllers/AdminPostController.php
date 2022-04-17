@@ -39,7 +39,7 @@ class AdminPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'location' => 'required|max:255',
-            'rating_score' => 'required|max:255|numeric',
+            'rating_score' => 'required|max:5|numeric',
             // 'image_link' => 'max:255',
             // 'rating_count' => 'numeric',
         ]);
@@ -90,7 +90,7 @@ class AdminPostController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'location' => 'required|max:255',
-            'rating_score' => 'required|max:255|numeric',
+            'rating_score' => 'required|max:5|numeric',
             // 'image_link' => 'max:255',
             // 'rating_count' => 'numeric',
         ]);

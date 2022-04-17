@@ -21,25 +21,19 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Lokasi</th>
-                    <th scope="col">Rating</th>
-                    <th scope="col" colspan="2" style="text-align: center">Action</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Waktu Dibuat</th>
+                    <th scope="col" style="text-align: center">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($posts as $post)
+                @foreach ($users as $user)
                     <tr>
-                        <td>{{ $post->post_id }}</td>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->location }}</td>
-                        <td>{{ $post->rating_score }}</td>
-                        <td class="hideextra">
-                            <button class="btn btn-warning me-2"
-                                onclick="window.location.href='{{ route('post.edit', $post->post_id) }}';">Edit</button>
-                        </td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->created_at }}</td>
                         <td>
-                            <form action="{{ route('post.destroy', $post->post_id) }}" method="post">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Delete</button>
@@ -50,17 +44,17 @@
             </tbody>
         </table>
         <div class='d-flex justify-content-center'>
-            Halaman : {{ $posts->currentPage() }} / {{ $posts->lastPage() }} |
+            Halaman : {{ $users->currentPage() }} / {{ $users->lastPage() }} |
 
-            @if ($posts->perPage() > $posts->total())
-                Data : {{ $posts->total() }} / {{ $posts->total() }}
+            @if ($users->perPage() > $users->total())
+                Data : {{ $users->total() }} / {{ $users->total() }}
             @else
-                Data : {{ $posts->perPage() }} / {{ $posts->total() }}
+                Data : {{ $users->perPage() }} / {{ $users->total() }}
             @endif 
             <br/>
         </div>    
             <div class='d-flex justify-content-center'>
-                {{ $posts->links('pagination::bootstrap-4') }}
+                {{ $users->links('pagination::bootstrap-4') }}
             </div>
     </div>
 @endsection

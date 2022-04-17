@@ -14,10 +14,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data['title'] = 'Data User';
-        $data['username'] = $request->username;
-        $data['rows'] = User::where('username', 'like', '%' . $request->username . '%')->get();
-        return view('login', $data);
+        // $data['title'] = 'Data User';
+        // $data['username'] = $request->username;
+        // $data['rows'] = User::where('username', 'like', '%' . $request->username . '%')->get();
+        // return view('login', $data);
+        $users = User::paginate(10);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     /**
@@ -101,8 +103,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/users')->with('success', "User berhasil dihapus");
     }
 }
