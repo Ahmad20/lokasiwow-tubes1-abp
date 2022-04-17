@@ -69,39 +69,6 @@
                         quam quae dignissimos modi ratione, vel dolore repellendus nulla blanditiis sequi, neque sunt quasi!
                     </p>
 
-                    <!-- GTAU YANG KARTU KARTU BAHASA GITU -->
-                    <div class="row mb-3">
-                        <div class="col-sm-12 col-md-4">
-                            <div style="background-color: rgba(196, 196, 196, 15%);"
-                                class="d-flex rounded align-items-center">
-                                <img src="https://placeholder.pics/svg/75x75" />
-                                <div class="ms-2">
-                                    <p class="mb-0">Text</p>
-                                    <p class="mb-0" style="font-size: 12px; color: gray;">Double text</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4">
-                            <div style="background-color: rgba(196, 196, 196, 15%);"
-                                class="d-flex rounded align-items-center">
-                                <img src="https://placeholder.pics/svg/75x75" />
-                                <div class="ms-2">
-                                    <p class="mb-0">Text</p>
-                                    <p class="mb-0" style="font-size: 12px; color: gray;">Double text</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-4">
-                            <div style="background-color: rgba(196, 196, 196, 15%);"
-                                class="d-flex rounded align-items-center">
-                                <img src="https://placeholder.pics/svg/75x75" />
-                                <div class="ms-2">
-                                    <p class="mb-0">Text</p>
-                                    <p class="mb-0" style="font-size: 12px; color: gray;">Double text</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </div>
             </article>
 
@@ -144,7 +111,7 @@
                             <hr />
                             <p class="no-comments">No Comments Yet</p>
                         </div> --}}
-                        <div class="comments">
+                        <div class="comments" style="max-height: 300px; overflow-y: auto; ">
 
                             @if (count($comments) > 0)
                                 @foreach ($comments as $comment)
