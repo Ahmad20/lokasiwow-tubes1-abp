@@ -17,8 +17,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            // $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('is_admin')->default(0);
             $table->string('password');
             // $table->rememberToken();
             $table->timestamps();
@@ -26,6 +25,7 @@ return new class extends Migration
         DB::table('users')->insert([
             'username' => 'Administrator',
             'password' => Hash::make('admin'),
+            'is_admin' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

@@ -11,7 +11,7 @@ class Post extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'posts';
-    protected $primary_key='post_id';
+    protected $primaryKey='post_id';
     protected $fillable = [
         'title',
         'location',
@@ -20,4 +20,7 @@ class Post extends Model
         'rating_score',
         'rating_total'
     ];
+    function comments(){
+        return $this->hasMany(Comment::class)->orderBy('id','desc');
+    }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return view('admin.categories.index', ['categories'=>$category]);
-
+        $blog = Blog::orderByDesc('created_at')->paginate(10);
+        return view('admin.blogs.index', ['blogs' => $blog]);
     }
 
     /**
@@ -24,9 +23,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.categories.create');
+        return view('admin.blogs.create');
     }
 
     /**
@@ -38,19 +37,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'title' => 'required|max:255',
+            'content' => 'required',
         ]);
-        $category = Category::create($validated);
-        return redirect('/categories')->with('success', "Kategori berhasil ditambahkan");
+        $blog = Blog::create($validated);
+        return redirect('/blogs')->with('success', "Blog berhasil ditambahkan");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
         //
     }
@@ -58,41 +58,43 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $categories = Category::findOrFail($id);
-        return view('admin.categories.edit', compact('categories'));
+        $blogs = Blog::findOrFail($id);
+        return view('admin.blogs.edit', compact('blogs'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'title' => 'required|max:255',
+            'content' => 'required',
         ]);
-        Category::find($id)->update($validated);
-        return redirect('/categories')->with('success', "Kategori berhasil diubah");
+        Blog::find($id)->update($validated);
+        return redirect('/blogs')->with('success', "Blog berhasil diubah");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect('/categories')->with('success', "Kategori berhasil dihapus");
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+        return redirect('/blogs')->with('success', "Blog berhasil dihapus");
+
     }
 }
