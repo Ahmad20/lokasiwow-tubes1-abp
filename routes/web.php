@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SinglePageController;
@@ -56,6 +57,8 @@ Route::group(['middleware' => ['admin']], function () {
     // Route::resource('/admin/user', UserController::class);
 
 });
+
+Route::get('/dashboard', [DashboardController::class,'index']);
 
 // Route::get('home', [HomeController::class, 'index'])->name('home');
 // Route::get('/profile', [ProfileController::class, 'index']);
