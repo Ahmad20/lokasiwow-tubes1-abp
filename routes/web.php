@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SinglePageController;
 
@@ -43,7 +44,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resources([
         'blogs' => BlogController::class,
         'comments' => CommentController::class,
-        'locations' => LocationController::class,
+        'location' => LocationController::class,
         '/admin/category' => CategoryController::class,
         '/admin/post' => AdminPostController::class,
         '/admin/user' => UserController::class
