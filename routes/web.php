@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SinglePageController;
+use App\Http\Controllers\AdminPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['admin']], function () {
         'comments' => CommentController::class,
         'location' => LocationController::class,
         'categories' => CategoryController::class,
-        '/admin/post' => AdminPostController::class,
+        'post' => AdminPostController::class,
         '/admin/user' => UserController::class
     ]);
     // Route::resource('/admin/comment', CommentController::class);
